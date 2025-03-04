@@ -25,18 +25,35 @@ export default function Home() {
     message: "",
   });
 
-  const handleChange = (e: { target: { name: string; value: string } }) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
-    // Show success message or redirect
+    console.log("Form data:", formData);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      console.log(res);
+
+      if (res.ok) {
+        alert("Missatge enviat correctament");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Error al enviar el missatge");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al enviar el missatge");
+    }
   };
 
   return (
@@ -84,7 +101,10 @@ export default function Home() {
       </section>
 
       {/* Solar Solutions Section */}
-      <section id="energies-renovables" className="py-20 bg-gray-100">
+      <section
+        id="energies-renovables"
+        className="py-20 bg-gray-100 scroll-mt-10"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-3 text-[#15223F]">
             Energies Renovables
@@ -229,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* Solar Importance Section */}
-      <section id="services" className="py-20 bg-gray-100">
+      <section id="services" className="py-20 bg-gray-100 scroll-mt-10">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-3 text-[#15223F]">
             Perquè escollir EFASOL
@@ -323,7 +343,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-gray-100">
+      <section id="about" className="py-24 bg-gray-100 scroll-mt-5">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -476,7 +496,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section*/}
-      <section id="contact" className="py-16 bg-white relative">
+      <section id="contact" className="py-16 bg-white relative scroll-mt-12">
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div
             className="absolute inset-0"
@@ -604,7 +624,6 @@ export default function Home() {
                           required
                         />
                       </div>
-
                       <div>
                         <label
                           htmlFor="email"
@@ -624,7 +643,6 @@ export default function Home() {
                         />
                       </div>
                     </div>
-
                     <div>
                       <label
                         htmlFor="message"
@@ -643,16 +661,13 @@ export default function Home() {
                         required
                       />
                     </div>
-
                     <div>
-                      <Button
-                        variant="primary"
-                        size="md"
+                      <button
                         type="submit"
-                        className="w-full md:w-auto px-8 py-3 text-base"
+                        className="w-full md:w-auto px-8 py-3 text-base bg-[#FAB03B] text-white rounded-md"
                       >
                         Enviar missatge
-                      </Button>
+                      </button>
                     </div>
                   </form>
                 </div>
