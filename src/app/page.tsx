@@ -15,8 +15,9 @@ import {
 } from "lucide-react";
 import Button from "./components/Button";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { getEntries } from "./lib/contentful";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,37 @@ export default function Home() {
     email: "",
     message: "",
   });
+  type Product = {
+    fields: {
+      productName: string;
+    };
+    sys: {
+      id: string;
+    };
+  };
 
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const data = await getEntries("product");
+      const mappedProducts = data.map((item) => ({
+        fields: {
+          productName: item.fields.productName as string,
+        },
+        sys: {
+          id: item.sys.id,
+        },
+      }));
+
+      setProducts(mappedProducts);
+    }
+
+    fetchProducts();
+  }, []);
+  if (products.length > 0) {
+    console.log(products[0].fields.productName);
+  }
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -55,7 +86,6 @@ export default function Home() {
       alert("Error al enviar el missatge");
     }
   };
-
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -75,8 +105,15 @@ export default function Home() {
             transition={{ duration: 3 }}
           />
         </div>
-
         <div className="container mx-auto px-4 z-10">
+          <div>
+            <h2>Lista de Productos</h2>
+            <ul>
+              {products.map((product) => (
+                <li key={product.sys.id}>{product.fields.productName}</li>
+              ))}
+            </ul>
+          </div>
           <div className="max-w-3xl">
             <motion.h1
               className="text-4xl md:text-6xl font-bold text-white mb-6"
