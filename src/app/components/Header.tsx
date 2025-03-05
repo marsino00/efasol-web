@@ -11,11 +11,11 @@ export default function Header() {
     <header className="fixed w-full bg-white z-50 shadow-2xl">
       <div className="w-full px-5 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center p-2">
           <Image
-            src="/logo.svg"
-            width={120}
-            height={120}
+            src="/logo_estirat.svg"
+            width={300}
+            height={50}
             alt="Logo d'Energies Renovables"
           />
         </Link>
