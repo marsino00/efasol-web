@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-white py-6">
+    <footer className="bg-white py-3">
       <div className="container mx-auto px-4">
         <p className="text-center text-gray-800 mb-4 font-semibold">
           PROGRAMA KIT DIGITAL FINANÇAT PELS FONS NEXT GENERATION DEL MECANISME
