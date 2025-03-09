@@ -31,7 +31,7 @@ export default function PoliticaPrivacidadPage() {
             de Bages, Barcelona, España
           </li>
           <li>
-            <strong>CIF/NIF:</strong> [CIF/NIF]
+            <strong>CIF/NIF:</strong> 77477030N
           </li>
           <li>
             <strong>Correo electrónico de contacto:</strong> info@efasol.com

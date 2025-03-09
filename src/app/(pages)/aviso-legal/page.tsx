@@ -20,8 +20,8 @@ export default function AvisoLegalPage() {
           <a href="https://efasol.com/" className="text-blue-600 underline">
             https://efasol.com/
           </a>{" "}
-          (en adelante, Sitio Web) la ostenta: Gastón Nelson Sanchez Mesa, con
-          NIF: 72196387P, y cuyos datos de contacto son:
+          (en adelante, Sitio Web) la ostenta: Albert Espelt Font, con NIF:
+          77477030N, y cuyos datos de contacto son:
         </p>
         <ul className="list-disc list-inside mb-4">
           <li>
