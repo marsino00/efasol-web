@@ -8,8 +8,6 @@ type HeroSectionProps = {
 };
 
 export default function HeroSection({ products }: HeroSectionProps) {
-  console.log(products[0].fields.productName);
-
   return (
     <section className="relative h-[100vh] flex items-center overflow-hidden">
       <div

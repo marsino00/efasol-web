@@ -8,18 +8,14 @@ import NavBar from "./Navbar";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Clases para los enlaces en la versión de escritorio
   const desktopLinkClasses =
     "relative inline-block text-[#15223F] font-semibold pb-1 after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[20%] after:bg-[#FAB03B] after:transition-all after:duration-300 hover:after:w-full";
 
-  // Clases para el contenedor en la versión de escritorio
   const desktopContainerClasses = "hidden md:flex items-center space-x-8";
 
-  // Clases para los enlaces en la versión móvil
   const mobileLinkClasses =
     "text-[#15223F] font-semibold transition duration-300 hover:text-[#FAB03B]";
 
-  // Clases para el contenedor en la versión móvil
   const mobileContainerClasses =
     "md:hidden bg-white border-t border-gray-200 px-10 py-4 flex flex-col space-y-4";
 
@@ -36,13 +32,12 @@ export default function Header() {
           />
         </Link>
 
-        {/* Navegación de escritorio */}
+        {/* Desktop nav */}
         <NavBar
           containerClassName={desktopContainerClasses}
           linkClassName={desktopLinkClasses}
         />
 
-        {/* Botón de menú móvil */}
         <button
           className="md:hidden focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -73,7 +68,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Navegación móvil */}
+      {/* Mobile nav */}
       {isMenuOpen && (
         <NavBar
           containerClassName={mobileContainerClasses}
