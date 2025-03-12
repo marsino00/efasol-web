@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
@@ -9,18 +10,19 @@ type NavBarProps = {
   onLinkClick?: () => void;
 };
 
-const links = [
-  { href: "/#energies-renovables", label: "Energies renovables" },
-  { href: "/#services", label: "Serveis" },
-  { href: "/#about", label: "Sobre nosaltres" },
-  { href: "/#contact", label: "Contacta'ns" },
-];
-
 export default function NavBar({
   containerClassName = "",
   linkClassName = "",
   onLinkClick,
 }: NavBarProps) {
+  const t = useTranslations("navbar");
+
+  const links = [
+    { href: "/#energies-renovables", label: t("energies-renovables") },
+    { href: "/#services", label: t("services") },
+    { href: "/#about", label: t("about") },
+    { href: "/#contact", label: t("contact") },
+  ];
   return (
     <nav className={containerClassName}>
       {links.map((link) => (

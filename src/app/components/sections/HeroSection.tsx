@@ -1,13 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Product } from "@/app/types/product";
+import { HeroData } from "@/app/types/data";
+import { useEffect, useState } from "react";
+import { getEntries } from "@/app/lib/contentful";
 
-type HeroSectionProps = {
-  products: Product[];
-};
+export default function HeroSection() {
+  const [data, setData] = useState<HeroData[]>([]);
 
-export default function HeroSection({ products }: HeroSectionProps) {
+  useEffect(() => {
+    async function fetchHeroData() {
+      const data = await getEntries("heroSection");
+
+      const mappedProducts = data.map((item) => ({
+        fields: {
+          heroTitulo: item.fields.heroTitulo as string,
+          heroDesc: item.fields.heroDesc as string,
+        },
+        sys: {
+          id: item.sys.id,
+        },
+      }));
+
+      setData(mappedProducts);
+    }
+
+    fetchHeroData();
+  }, []);
   return (
     <section className="relative h-[100vh] flex items-center overflow-hidden">
       <div
@@ -34,7 +53,7 @@ export default function HeroSection({ products }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            Especialistes en energies renovables solar fotovoltaica i tèrmica
+            {data[0]?.fields?.heroTitulo ?? "Cargando..."}
           </motion.h1>
 
           <motion.p
@@ -43,8 +62,7 @@ export default function HeroSection({ products }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            EL FUTUR ESTÀ AQUÍ! Descobreix el que EFASOL pot fer per tu i pel
-            planeta.
+            {data[0]?.fields?.heroDesc ?? "Cargando..."}
           </motion.p>
         </div>
       </div>
