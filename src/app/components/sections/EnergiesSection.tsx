@@ -17,7 +17,6 @@ export default function EnergiesSection() {
         content_type: "energiesSection",
         locale: selectedLocale,
       });
-      console.log("entries", entries);
 
       const mappedEntries = entries.map((item) => ({
         fields: {

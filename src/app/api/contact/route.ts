@@ -25,7 +25,6 @@ export async function POST(request: Request) {
              <p><strong>Missatge:</strong><br/>${message}</p>`,
     });
 
-    console.log("Mensaje enviado: %s", info.messageId);
     return NextResponse.json({ message: "Email enviado exitosamente" });
   } catch (error) {
     console.error("Error al enviar email:", error);
