@@ -20,6 +20,7 @@ export default function Footer() {
             width={150}
             height={150}
             className="object-contain"
+            style={{ width: "150px", height: "150px" }}
           />
           <Image
             src="/l2.png"
@@ -27,6 +28,7 @@ export default function Footer() {
             width={150}
             height={150}
             className="object-contain"
+            style={{ width: "150px", height: "150px" }}
           />
           <Image
             src="/l3.png"
@@ -34,6 +36,7 @@ export default function Footer() {
             width={150}
             height={150}
             className="object-contain"
+            style={{ width: "150px", height: "150px" }}
           />
           <Image
             src="/l4.png"
@@ -41,6 +44,7 @@ export default function Footer() {
             width={150}
             height={150}
             className="object-contain"
+            style={{ width: "150px", height: "150px" }}
           />
           <Image
             src="/l5.png"
@@ -48,6 +52,7 @@ export default function Footer() {
             width={150}
             height={150}
             className="object-contain"
+            style={{ width: "150px", height: "150px" }}
           />
         </div>
 

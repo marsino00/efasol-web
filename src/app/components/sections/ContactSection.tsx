@@ -194,6 +194,7 @@ export default function ContactSection() {
                         {t("contact-form.name")}
                       </label>
                       <input
+                        autoComplete="name"
                         type="text"
                         id="name"
                         name="name"
@@ -212,6 +213,7 @@ export default function ContactSection() {
                         {t("contact-form.email")}
                       </label>
                       <input
+                        autoComplete="email"
                         type="email"
                         id="email"
                         name="email"
@@ -231,6 +233,7 @@ export default function ContactSection() {
                       {t("contact-form.message")}
                     </label>
                     <textarea
+                      autoComplete="message"
                       id="message"
                       name="message"
                       value={formData.message}

@@ -34,7 +34,9 @@ export default function HeroSection() {
     fetchHeroData();
   }, [selectedLocale]);
 
-  const backgroundUrl = `https:${data[0]?.fields?.heroImage?.fields?.file?.url}`;
+  const backgroundUrl = data[0]?.fields?.heroImage?.fields?.file?.url
+    ? `https:${data[0].fields.heroImage.fields.file.url}`
+    : "/plaques.jpg";
 
   return (
     <section className="relative h-[100vh] flex items-center overflow-hidden">
