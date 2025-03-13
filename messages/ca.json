@@ -4,5 +4,29 @@
     "services": "Serveis",
     "about": "Sobre nosaltres",
     "contact": "Contacta'ns"
+  },
+  "about-exp": "Anys d'experiència",
+  "about-button": "Contacta amb nosaltres",
+  "phone": "Telèfon",
+  "email": "Correu electrònic",
+  "address": "Adreça",
+  "schedule": "Horari",
+  "contact-form": {
+    "title": "Envia'ns un missatge",
+    "name": "Nom complet",
+    "email": "Correu electrònic",
+    "message": "Missatge",
+    "placeholder": {
+      "name": "El teu nom",
+      "email": "email@example.com",
+      "message": "En què et podem ajudar?"
+    },
+    "send": "Enviar missatge"
+  },
+  "footer": {
+    "text1": "PROGRAMA KIT DIGITAL FINANÇAT PELS FONS NEXT GENERATION DEL MECANISME DE RECUPERACIÓ I RESILIÈNCIA",
+    "legal-advice": "Avís legal",
+    "privacy-policy": "Política de privacitat",
+    "cookies-policy": "Política de cookies"
   }
 }

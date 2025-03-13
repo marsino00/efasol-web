@@ -1,15 +1,16 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
+  const t = useTranslations("footer");
   return (
     <footer className="bg-white py-3">
       <div className="container mx-auto px-4">
         <p className="text-center text-gray-800 mb-4 font-semibold">
-          PROGRAMA KIT DIGITAL FINANÇAT PELS FONS NEXT GENERATION DEL MECANISME
-          DE RECUPERACIÓ I RESILIÈNCIA
+          {t("text1")}
         </p>
 
         <div className="flex flex-wrap justify-center items-center gap-20">
@@ -52,13 +53,13 @@ export default function Footer() {
 
         <div className="mt-6 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600">
           <Link href="/aviso-legal" className="hover:text-gray-900">
-            Aviso legal
+            {t("legal-advice")}
           </Link>
           <Link href="/politica-privacidad" className="hover:text-gray-900">
-            Política de privacidad
+            {t("privacy-policy")}
           </Link>
           <Link href="/politica-cookies" className="hover:text-gray-900">
-            Política de Cookies
+            {t("cookies-policy")}
           </Link>
         </div>
       </div>

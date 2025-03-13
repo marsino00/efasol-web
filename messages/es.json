@@ -3,6 +3,30 @@
     "energies-renovables": "Energías renovables",
     "services": "Servicios",
     "about": "Sobre nosotros",
-    "contact": "Contacto"
+    "contact": "Contáctanos"
+  },
+  "about-exp": "Años de experiencia",
+  "about-button": "Contáctanos",
+  "phone": "Teléfono",
+  "email": "Correo electrónico",
+  "address": "Dirección",
+  "schedule": "Horario",
+  "contact-form": {
+    "title": "Envíanos un mensaje",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "placeholder": {
+      "name": "Tu nombre",
+      "email": "email@example.com",
+      "message": "¿En qué te podemos ayudar?"
+    },
+    "send": "Enviar mensaje"
+  },
+  "footer": {
+    "text1": "PROGRAMA KIT DIGITAL FINANCIADO POR LOS FONDOS NEXT GENERATION DEL MECANISMO DE RECUPERACIÓN Y RESILIENCIA",
+    "legal-advice": "Aviso legal",
+    "privacy-policy": "Política de privacidad",
+    "cookies-policy": "Política de cookies"
   }
 }

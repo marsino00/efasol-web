@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function AboutSection() {
+  const t = useTranslations();
   const services = [
     "Estudi, disseny i muntatge d'Instal·lacions Fotovoltaiques (Autoconsum, Aïllades, connexió a xarxa).",
     "Manteniments de plantes Fotovoltaiques.",
@@ -51,7 +53,7 @@ export default function AboutSection() {
             <div className="absolute -bottom-6 -right-6 bg-[#FAB03B] text-white p-6 rounded-lg shadow-lg">
               <p className="text-2xl font-bold">+10</p>
               <p className="text-sm uppercase tracking-wider">
-                Anys d&apos;experiència
+                {t("about-exp")}
               </p>
             </div>
           </motion.div>
@@ -95,7 +97,7 @@ export default function AboutSection() {
                   }
                 }}
               >
-                <span>Contacta amb nosaltres</span>
+                <span>{t("about-button")}</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>

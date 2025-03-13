@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PhoneCall, Mail, MapPin, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ export default function ContactSection() {
     email: "",
     message: "",
   });
+
+  const t = useTranslations();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -94,7 +97,9 @@ export default function ContactSection() {
                     <PhoneCall className="h-5 w-5 text-yellow-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Telèfon</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {t("phone")}
+                    </h4>
                     <p className="text-gray-600">661 523 509</p>
                   </div>
                 </div>
@@ -103,7 +108,9 @@ export default function ContactSection() {
                     <Mail className="h-5 w-5 text-yellow-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Email</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {t("email")}
+                    </h4>
                     <p className="text-gray-600">info@efasol.com</p>
                   </div>
                 </div>
@@ -112,7 +119,9 @@ export default function ContactSection() {
                     <MapPin className="h-5 w-5 text-yellow-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Adreça</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {t("address")}
+                    </h4>
                     <p className="text-gray-600">
                       Carrer Montsant, 6, 08272 Sant Fruitós de Bages,
                       Barcelona, España
@@ -124,7 +133,9 @@ export default function ContactSection() {
                     <Clock className="h-5 w-5 text-yellow-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Horari</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {t("schedule")}
+                    </h4>
                     <p className="text-gray-600">
                       Dilluns - Divendres: 9:00 – 19:00
                     </p>
@@ -145,7 +156,7 @@ export default function ContactSection() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="p-8">
                 <h3 className="text-xl font-bold mb-6">
-                  Envia&apos;ns un missatge
+                  {t("contact-form.title")}
                 </h3>
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,7 +165,7 @@ export default function ContactSection() {
                         htmlFor="name"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Nom complet
+                        {t("contact-form.name")}
                       </label>
                       <input
                         type="text"
@@ -163,7 +174,7 @@ export default function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
-                        placeholder="El teu nom"
+                        placeholder={t("contact-form.placeholder.name")}
                         required
                       />
                     </div>
@@ -172,7 +183,7 @@ export default function ContactSection() {
                         htmlFor="email"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Correu electrònic
+                        {t("contact-form.email")}
                       </label>
                       <input
                         type="email"
@@ -181,7 +192,7 @@ export default function ContactSection() {
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
-                        placeholder="email@exemple.com"
+                        placeholder={t("contact-form.placeholder.email")}
                         required
                       />
                     </div>
@@ -191,7 +202,7 @@ export default function ContactSection() {
                       htmlFor="message"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Missatge
+                      {t("contact-form.message")}
                     </label>
                     <textarea
                       id="message"
@@ -200,7 +211,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       rows={6}
                       className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
-                      placeholder="En què podem ajudar-te?"
+                      placeholder={t("contact-form.placeholder.message")}
                       required
                     />
                   </div>
@@ -209,7 +220,7 @@ export default function ContactSection() {
                       type="submit"
                       className="w-full md:w-auto px-8 py-3 text-base bg-[#FAB03B] text-white rounded-md"
                     >
-                      Enviar missatge
+                      {t("contact-form.send")}
                     </button>
                   </div>
                 </form>
