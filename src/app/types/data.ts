@@ -1,5 +1,6 @@
 export type HeroData = {
   fields: {
+    heroImage: ContentfulImage;
     heroTitulo: string;
     heroDesc: string;
   };
@@ -7,3 +8,10 @@ export type HeroData = {
     id: string;
   };
 };
+export interface ContentfulImage {
+  fields: {
+    file: {
+      url: string;
+    };
+  };
+}

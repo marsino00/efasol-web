@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HeroData } from "@/app/types/data";
+import { ContentfulImage, HeroData } from "@/app/types/data";
 import { useEffect, useState } from "react";
 import { getEntries } from "@/app/lib/contentful";
 
@@ -16,6 +16,7 @@ export default function HeroSection() {
         fields: {
           heroTitulo: item.fields.heroTitulo as string,
           heroDesc: item.fields.heroDesc as string,
+          heroImage: item.fields.heroImage as ContentfulImage,
         },
         sys: {
           id: item.sys.id,
@@ -27,12 +28,16 @@ export default function HeroSection() {
 
     fetchHeroData();
   }, []);
+
+  const backgroundUrl =
+    `https:${data[0]?.fields?.heroImage?.fields?.file?.url}` || "/plaques.jpg";
+
   return (
     <section className="relative h-[100vh] flex items-center overflow-hidden">
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("/plaques.jpg")',
+          backgroundImage: `url(${backgroundUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
