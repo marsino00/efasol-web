@@ -28,8 +28,6 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const initialLocale = "ca";
-  // Importa las traducciones de forma sincrónica (en un entorno de producción puedes optimizar esto)
-  // Nota: Esta importación es válida porque se ejecuta en el servidor.
   const initialMessages = (await import("../../messages/ca.json")).default;
   return (
     <html lang={locale}>

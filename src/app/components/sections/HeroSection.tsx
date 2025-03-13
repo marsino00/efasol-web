@@ -4,15 +4,20 @@ import { motion } from "framer-motion";
 import { ContentfulImage, HeroData } from "@/app/types/data";
 import { useEffect, useState } from "react";
 import { getEntries } from "@/app/lib/contentful";
+import { useLocale } from "next-intl";
 
 export default function HeroSection() {
   const [data, setData] = useState<HeroData[]>([]);
+  const selectedLocale = useLocale();
 
   useEffect(() => {
     async function fetchHeroData() {
-      const data = await getEntries("heroSection");
+      const entries = await getEntries({
+        content_type: "heroSection",
+        locale: selectedLocale,
+      });
 
-      const mappedProducts = data.map((item) => ({
+      const mappedProducts = entries.map((item) => ({
         fields: {
           heroTitulo: item.fields.heroTitulo as string,
           heroDesc: item.fields.heroDesc as string,
@@ -27,10 +32,9 @@ export default function HeroSection() {
     }
 
     fetchHeroData();
-  }, []);
+  }, [selectedLocale]);
 
-  const backgroundUrl =
-    `https:${data[0]?.fields?.heroImage?.fields?.file?.url}` || "/plaques.jpg";
+  const backgroundUrl = `https:${data[0]?.fields?.heroImage?.fields?.file?.url}`;
 
   return (
     <section className="relative h-[100vh] flex items-center overflow-hidden">

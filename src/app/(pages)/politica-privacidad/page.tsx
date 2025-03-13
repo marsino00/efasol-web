@@ -1,4 +1,3 @@
-// src/app/(pages)/politica-privacidad/page.tsx
 export default function PoliticaPrivacidadPage() {
   return (
     <main className="min-h-screen bg-white py-8">

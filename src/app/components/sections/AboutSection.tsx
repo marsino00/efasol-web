@@ -1,21 +1,52 @@
-// src/app/components/sections/AboutSection.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { getEntries } from "@/app/lib/contentful";
+import { AboutSectionEntry, ContentfulImage } from "@/app/types/data";
 
 export default function AboutSection() {
   const t = useTranslations();
-  const services = [
-    "Estudi, disseny i muntatge d'Instal·lacions Fotovoltaiques (Autoconsum, Aïllades, connexió a xarxa).",
-    "Manteniments de plantes Fotovoltaiques.",
-    "Direcció presencial d'instal·lacions fotovoltaiques en altres Països (Amèrica Llatina, Àfrica, etc...).",
-    "Estudi, disseny i muntatge d'Instal·lacions Solars tèrmiques, Biomassa i Geotèrmica.",
-    "Manteniments Solar tèrmiques, Biomassa i geotèrmiques.",
-  ];
+  const selectedLocale = useLocale();
+  const [data, setData] = useState<AboutSectionEntry[]>([]);
+
+  useEffect(() => {
+    async function fetchAboutData() {
+      const entries = await getEntries({
+        content_type: "aboutSection",
+        locale: selectedLocale,
+      });
+      const mappedData = entries.map((item) => ({
+        fields: {
+          aboutImage: item.fields.aboutImage as ContentfulImage,
+          aboutList: item.fields.aboutList as string[],
+          subtitulo: item.fields.subtitulo as string,
+          text1: item.fields.text1 as string,
+        },
+        sys: {
+          id: item.sys.id,
+        },
+      }));
+      setData(mappedData);
+    }
+    fetchAboutData();
+  }, [selectedLocale]);
+
+  if (data.length === 0) {
+    return (
+      <section id="about" className="py-24 bg-gray-100 scroll-mt-5">
+        <div className="container mx-auto px-4">
+          <p className="text-center">Cargando...</p>
+        </div>
+      </section>
+    );
+  }
+
+  const about = data[0].fields;
 
   return (
     <section id="about" className="py-24 bg-gray-100 scroll-mt-5">
@@ -28,7 +59,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold mb-3 text-[#15223F]">
-            Sobre nosaltres
+            {t("navbar.about")}
           </h2>
           <div className="w-24 h-1 bg-[#FAB03B] mx-auto"></div>
         </motion.div>
@@ -43,8 +74,8 @@ export default function AboutSection() {
           >
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
-                alt="EFASOL team working on solar installation"
-                src="/plaques.jpg"
+                alt="Imatge de l'About Section"
+                src={`https:${about.aboutImage?.fields?.file?.url}`}
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -66,18 +97,13 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-[#FAB03B] shadow-md">
-              <p className="text-gray-700 leading-relaxed">
-                Efasol es una empresa jove, nascuda de l&apos;empresa SOLnet2000
-                i compta amb més de 10 anys d&apos;experiència en el sector,
-                portant actualment instal·lats més de 2 MegaWatts fotovoltaics i
-                duent-ne a terme el seu manteniment preventiu i correctiu.
-              </p>
+              <p className="text-gray-700 leading-relaxed">{about.text1}</p>
             </div>
 
-            <h3 className="text-2xl font-semibold">Els nostres serveis</h3>
+            <h3 className="text-2xl font-semibold">{about.subtitulo}</h3>
 
             <div className="space-y-4">
-              {services.map((service, index) => (
+              {about.aboutList.map((service, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
                   <p className="text-gray-700">{service}</p>

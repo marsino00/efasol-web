@@ -26,7 +26,11 @@ export default function ClientIntlProvider({
   };
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider
+      locale={locale}
+      messages={messages}
+      timeZone="Europe/Madrid"
+    >
       {children}
       <LanguageSwitcher currentLocale={locale} switchLocale={switchLocale} />
     </NextIntlClientProvider>

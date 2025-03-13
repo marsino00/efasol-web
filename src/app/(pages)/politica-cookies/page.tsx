@@ -1,4 +1,3 @@
-// src/app/(pages)/politica-cookies/page.tsx
 export default function PoliticaCookiesPage() {
   return (
     <main className="min-h-screen bg-white py-8">

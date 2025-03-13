@@ -5,8 +5,16 @@ const client = createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN as string,
 });
 
-export async function getEntries(contentType: string) {
-  const entries = await client.getEntries({ content_type: contentType });
+interface GetEntriesOptions {
+  content_type: string;
+  locale?: string;
+}
+
+export async function getEntries(options: GetEntriesOptions) {
+  const entries = await client.getEntries({
+    content_type: options.content_type,
+    locale: options.locale || "*",
+  });
   return entries.items;
 }
 

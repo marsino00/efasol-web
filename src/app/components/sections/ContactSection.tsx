@@ -1,19 +1,22 @@
-// src/app/components/sections/ContactSection.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { PhoneCall, Mail, MapPin, Clock } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { getEntries } from "@/app/lib/contentful";
+import { ContactEntry } from "@/app/types/data";
 
 export default function ContactSection() {
+  const t = useTranslations();
+  const selectedLocale = useLocale();
+  const [data, setData] = useState<ContactEntry[]>([]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-
-  const t = useTranslations();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,10 +25,35 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  useEffect(() => {
+    async function fetchContactData() {
+      const entries = await getEntries({
+        content_type: "contactSection",
+        locale: selectedLocale,
+      });
+      const mappedContacts = entries.map((item) => ({
+        fields: {
+          address: item.fields.address as string,
+          desc: item.fields.desc as string,
+          email: item.fields.email as string,
+          phone: item.fields.phone as string,
+          schedule: item.fields.schedule as string,
+          title: item.fields.title as string,
+          intro: item.fields.intro as string,
+        },
+        sys: {
+          id: item.sys.id,
+        },
+      }));
+
+      setData(mappedContacts);
+    }
+
+    fetchContactData();
+  }, [selectedLocale]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form data:", formData);
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -43,6 +71,14 @@ export default function ContactSection() {
       alert("Error al enviar el missatge");
     }
   };
+
+  const address = data[0]?.fields?.address ?? "Cargando...";
+  const desc = data[0]?.fields?.desc ?? "Cargando...";
+  const email = data[0]?.fields?.email ?? "Cargando...";
+  const phone = data[0]?.fields?.phone ?? "Cargando...";
+  const schedule = data[0]?.fields?.schedule ?? "Cargando...";
+  const title = data[0]?.fields?.title ?? "Cargando...";
+  const intro = data[0]?.fields?.intro ?? "Cargando...";
 
   return (
     <section id="contact" className="py-16 bg-white relative scroll-mt-12">
@@ -65,18 +101,13 @@ export default function ContactSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold mb-3 text-[#15223F]">
-            Contacta&apos;ns
+            {t("navbar.contact")}
           </h2>
           <div className="w-24 h-1 bg-[#FAB03B] mx-auto mb-10"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Estàs interessat en les nostres solucions d&apos;energia renovable?
-            Contacta amb nosaltres i t&apos;ajudarem a trobar la millor opció
-            per a les teves necessitats.
-          </p>
+          <p className="text-gray-600 max-w-2xl mx-auto">{intro}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Informació de contacte */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -86,10 +117,8 @@ export default function ContactSection() {
           >
             <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
               <div className="bg-[#FAB03B] p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">
-                  Informació de contacte
-                </h3>
-                <p className="text-[#FAB03B]-100">Estem aquí per ajudar-te</p>
+                <h3 className="text-xl font-bold mb-2">{title}</h3>
+                <p className="text-[#FAB03B]-100">{desc}</p>
               </div>
               <div className="p-6 space-y-6">
                 <div className="flex items-start gap-4">
@@ -100,9 +129,10 @@ export default function ContactSection() {
                     <h4 className="font-semibold text-gray-900">
                       {t("phone")}
                     </h4>
-                    <p className="text-gray-600">661 523 509</p>
+                    <p className="text-gray-600">{phone}</p>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <Mail className="h-5 w-5 text-yellow-600" />
@@ -111,9 +141,10 @@ export default function ContactSection() {
                     <h4 className="font-semibold text-gray-900">
                       {t("email")}
                     </h4>
-                    <p className="text-gray-600">info@efasol.com</p>
+                    <p className="text-gray-600">{email}</p>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <MapPin className="h-5 w-5 text-yellow-600" />
@@ -122,12 +153,10 @@ export default function ContactSection() {
                     <h4 className="font-semibold text-gray-900">
                       {t("address")}
                     </h4>
-                    <p className="text-gray-600">
-                      Carrer Montsant, 6, 08272 Sant Fruitós de Bages,
-                      Barcelona, España
-                    </p>
+                    <p className="text-gray-600">{address}</p>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <Clock className="h-5 w-5 text-yellow-600" />
@@ -136,16 +165,13 @@ export default function ContactSection() {
                     <h4 className="font-semibold text-gray-900">
                       {t("schedule")}
                     </h4>
-                    <p className="text-gray-600">
-                      Dilluns - Divendres: 9:00 – 19:00
-                    </p>
+                    <p className="text-gray-600">{schedule}</p>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Formulari de contacte */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
