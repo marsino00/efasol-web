@@ -5,6 +5,28 @@ import { motion } from "framer-motion";
 import { getEntries } from "@/app/lib/contentful";
 import { useLocale, useTranslations } from "next-intl";
 import { ContentfulImage, EnergiesSectionEntry } from "@/app/types/data";
+import React from "react";
+
+// Función para procesar markdown básico (negrita con __text__)
+function parseMarkdown(text: string): React.ReactNode[] {
+  const processedText = text.replace(/\\n/g, "\n");
+  const parts = processedText.split(/(__.*?__)/g);
+
+  return parts.flatMap((part, index) => {
+    if (part.startsWith("__") && part.endsWith("__")) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part.split("\n").flatMap((line, i, arr) => {
+      if (i < arr.length - 1) {
+        return [
+          <span key={`${index}-${i}`}>{line}</span>,
+          <br key={`br-${index}-${i}`} />,
+        ];
+      }
+      return <span key={`${index}-${i}`}>{line}</span>;
+    });
+  });
+}
 
 export default function EnergiesSection() {
   const t = useTranslations();
@@ -17,7 +39,6 @@ export default function EnergiesSection() {
         content_type: "energiesSection",
         locale: selectedLocale,
       });
-
       const mappedEntries = entries.map((item) => ({
         fields: {
           descElemento: item.fields.descElemento as string,
@@ -73,7 +94,9 @@ export default function EnergiesSection() {
                     </h3>
                   </div>
                 </div>
-                <p className="text-gray-600">{item.fields.descElemento}</p>
+                <p className="text-gray-600 text-center">
+                  {parseMarkdown(item.fields.descElemento ?? "Cargando...")}
+                </p>
               </motion.div>
             );
           })}
