@@ -25,12 +25,12 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center p-2">
           <Image
+            className="cursor-pointer"
             priority
             src="/logo_estirat.svg"
             width={300}
-            height={75}
+            height={50}
             alt="Logo d'Energies Renovables"
-            style={{ width: "300px", height: "75px" }}
           />
         </Link>
 
