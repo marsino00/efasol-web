@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Efasol",
   description: "Energies renovables per a un món millor",
+  icons: {
+    icon: "/logo.svg", // O si usas otro formato: "/favicon.png"
+  },
 };
 
 export default async function RootLayout({
