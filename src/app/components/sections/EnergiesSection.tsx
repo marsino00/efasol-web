@@ -94,7 +94,7 @@ export default function EnergiesSection() {
                     </h3>
                   </div>
                 </div>
-                <p className="text-gray-600 text-center">
+                <p className="text-gray-600 text-left">
                   {parseMarkdown(item.fields.descElemento ?? "Cargando...")}
                 </p>
               </motion.div>
