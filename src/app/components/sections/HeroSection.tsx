@@ -9,6 +9,7 @@ import { useLocale } from "next-intl";
 export default function HeroSection() {
   const [data, setData] = useState<HeroData[]>([]);
   const selectedLocale = useLocale();
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchHeroData() {
@@ -34,29 +35,36 @@ export default function HeroSection() {
     fetchHeroData();
   }, [selectedLocale]);
 
-  const backgroundUrl = data[0]?.fields?.heroImage?.fields?.file?.url
+  const videoUrl = data[0]?.fields?.heroImage?.fields?.file?.url
     ? `https:${data[0].fields.heroImage.fields.file.url}`
-    : "/plaques.jpg";
+    : null;
 
   return (
-    <section className="relative h-[100vh] flex items-center overflow-hidden">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-black/80"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 3 }}
-        />
-      </div>
+    <section className="relative h-[100vh] flex items-center overflow-hidden bg-black">
+      {videoUrl && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          onLoadedData={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500 ${
+            videoLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <source src={videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
 
-      <div className="container mx-auto px-4 z-10">
+      <motion.div
+        className="absolute inset-0 bg-black/80 z-0"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 3 }}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
           <motion.h1
             className="text-4xl md:text-6xl font-bold text-white mb-6"
