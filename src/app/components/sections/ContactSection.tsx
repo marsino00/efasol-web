@@ -141,6 +141,7 @@ export default function ContactSection() {
                     <h4 className="font-semibold text-gray-900">
                       {t("email")}
                     </h4>
+
                     <p className="text-gray-600">{email}</p>
                   </div>
                 </div>
@@ -153,7 +154,15 @@ export default function ContactSection() {
                     <h4 className="font-semibold text-gray-900">
                       {t("address")}
                     </h4>
-                    <p className="text-gray-600">{address}</p>
+                    {/* <p className="text-gray-600">{address}</p> */}
+                    {address
+                      .replace(/\\n/g, "\n")
+                      .split("\n")
+                      .map((line, i) => (
+                        <p className="text-gray-600" key={i}>
+                          {line}
+                        </p>
+                      ))}
                   </div>
                 </div>
 
@@ -256,18 +265,6 @@ export default function ContactSection() {
               </div>
             </div>
           </motion.div>
-        </div>
-
-        <div className="mt-16 rounded-lg overflow-hidden shadow-lg">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11906.902169177563!2d1.8528092318893443!3d41.74801244201304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4f82857b55a07%3A0x46f2a5af17f0bf43!2sEFASOL%20Energies%20Renovables!5e0!3m2!1sca!2ses!4v1740842575397!5m2!1sca!2ses"
-            width="100%"
-            height="450"
-            loading="lazy"
-            className="w-full"
-            title="EFASOL location map"
-            allowFullScreen
-          ></iframe>
         </div>
       </div>
     </section>
