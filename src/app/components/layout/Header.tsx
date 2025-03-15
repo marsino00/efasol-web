@@ -25,7 +25,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center p-2">
           <Image
-            className="cursor-pointer"
+            className="cursor-pointer h-14 w-auto"
             priority
             src="/logo_estirat.svg"
             width={300}
