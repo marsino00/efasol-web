@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /privado
+Disallow: /api/*
+
+# Host
+Host: https://www.efasol.com
+
+# Sitemaps
+Sitemap: https://www.efasol.com/sitemap.xml
+Sitemap: https://www.efasol.com/server-sitemap.xml
