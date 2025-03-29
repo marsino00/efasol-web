@@ -258,5 +258,10 @@
       }
     },
     "skipLink": "Saltar al contingut principal"
-  }
+  },
+  "hero": {"pauseVideo": "Pausa el vídeo de fons",
+    "playVideo": "Reprodueix el vídeo de fons",
+    "videoNotSupported": "El teu navegador no suporta l'etiqueta de vídeo.",
+    "loadingTitle": "Carregant Títol...",
+    "loadingDesc": "Carregant descripció..."}
 }

@@ -258,5 +258,12 @@
       }
     },
     "skipLink": "Saltar al contenido principal"
+  },
+  "hero": {
+    "pauseVideo": "Pausar vídeo de fondo",
+    "playVideo": "Reproducir vídeo de fondo",
+    "videoNotSupported": "Tu navegador no soporta la etiqueta de vídeo.",
+    "loadingTitle": "Cargando Título...",
+    "loadingDesc": "Cargando descripción..."
   }
 }
