@@ -66,11 +66,11 @@ export default function EnergiesSection() {
         </h2>
         <div className="w-24 h-1 bg-[#FAB03B] mx-auto mb-10"></div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {data.map((item, index) => {
             const backgroundUrl = `https:${item?.fields?.energiesImage?.fields?.file?.url}`;
             return (
-              <motion.div
+              <motion.li
                 key={item.sys.id}
                 className="group"
                 initial={{ opacity: 0, y: 20 }}
@@ -97,10 +97,10 @@ export default function EnergiesSection() {
                 <p className="text-gray-600 text-left">
                   {parseMarkdown(item.fields.descElemento ?? "Cargando...")}
                 </p>
-              </motion.div>
+              </motion.li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

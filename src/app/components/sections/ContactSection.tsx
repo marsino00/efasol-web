@@ -120,8 +120,8 @@ export default function ContactSection() {
                 <h3 className="text-xl font-bold mb-2">{title}</h3>
                 <p className="text-[#FAB03B]-100">{desc}</p>
               </div>
-              <div className="p-6 space-y-6">
-                <div className="flex items-start gap-4">
+              <ul className="p-6 space-y-6">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <PhoneCall className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -131,9 +131,9 @@ export default function ContactSection() {
                     </h4>
                     <p className="text-gray-600">{phone}</p>
                   </div>
-                </div>
+                </li>
 
-                <div className="flex items-start gap-4">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <Mail className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -144,9 +144,9 @@ export default function ContactSection() {
 
                     <p className="text-gray-600">{email}</p>
                   </div>
-                </div>
+                </li>
 
-                <div className="flex items-start gap-4">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <MapPin className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -164,9 +164,9 @@ export default function ContactSection() {
                         </p>
                       ))}
                   </div>
-                </div>
+                </li>
 
-                <div className="flex items-start gap-4">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <Clock className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -176,8 +176,8 @@ export default function ContactSection() {
                     </h4>
                     <p className="text-gray-600">{schedule}</p>
                   </div>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </motion.div>
 

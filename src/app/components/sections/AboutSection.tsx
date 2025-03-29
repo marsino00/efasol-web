@@ -102,14 +102,14 @@ export default function AboutSection() {
 
             <h3 className="text-2xl font-semibold">{about.subtitulo}</h3>
 
-            <div className="space-y-4">
+            <ul className="space-y-4">
               {about.aboutList.map((service, index) => (
-                <div key={index} className="flex items-start gap-3">
+                <li key={index} className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
                   <p className="text-gray-700">{service}</p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <div className="pt-4">
               <Button

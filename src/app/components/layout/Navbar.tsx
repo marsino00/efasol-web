@@ -25,16 +25,22 @@ export default function NavBar({
   ];
   return (
     <nav className={containerClassName}>
-      {links.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={linkClassName}
-          onClick={onLinkClick}
-        >
-          {link.label}
-        </Link>
-      ))}
+      {/* Adaptar las clases del ul según sea necesario para desktop/mobile */}
+      <ul className="flex flex-col md:flex-row md:items-center md:space-x-8 space-y-4 md:space-y-0 list-none p-0">
+        {links.map((link) => (
+          <li key={link.href}>
+            {" "}
+            {/* Envolver en li */}
+            <Link
+              href={link.href}
+              className={linkClassName}
+              onClick={onLinkClick}
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
