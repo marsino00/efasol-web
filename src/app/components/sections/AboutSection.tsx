@@ -81,7 +81,7 @@ export default function AboutSection() {
                 className="w-full h-auto object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-[#FAB03B] text-white p-6 rounded-lg shadow-lg">
+            <div className="absolute -bottom-6 -right-6 bg-[#FAB03B] text-gray-900 p-6 rounded-lg shadow-lg">
               <p className="text-2xl font-bold">+10</p>
               <p className="text-sm uppercase tracking-wider">
                 {t("about-exp")}
@@ -105,7 +105,7 @@ export default function AboutSection() {
             <ul className="space-y-4">
               {about.aboutList.map((service, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">✓</span>
+                  <span className="text-green-700 font-bold">✓</span>
                   <p className="text-gray-700">{service}</p>
                 </li>
               ))}

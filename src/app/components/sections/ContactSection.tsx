@@ -116,7 +116,7 @@ export default function ContactSection() {
             className="col-span-1"
           >
             <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-              <div className="bg-[#FAB03B] p-6 text-white">
+              <div className="bg-[#FAB03B] p-6 text-gray-900">
                 <h3 className="text-xl font-bold mb-2">{title}</h3>
                 <p className="text-[#FAB03B]-100">{desc}</p>
               </div>
@@ -256,7 +256,7 @@ export default function ContactSection() {
                   <div>
                     <button
                       type="submit"
-                      className="w-full md:w-auto px-8 py-3 text-base bg-[#FAB03B] text-white rounded-md"
+                      className="w-full md:w-auto px-8 py-3 text-base bg-[#FAB03B] text-gray-900 rounded-md"
                     >
                       {t("contact-form.send")}
                     </button>
