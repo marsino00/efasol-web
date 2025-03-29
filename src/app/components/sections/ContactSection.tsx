@@ -209,7 +209,7 @@ export default function ContactSection() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
+                        className="w-full p-3 border border-gray-500 rounded-md focus:ring-2 focus:ring-yellow-600 outline-none focus:border-transparent transition"
                         placeholder={t("contact-form.placeholder.name")}
                         required
                       />
@@ -228,7 +228,7 @@ export default function ContactSection() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
+                        className="w-full p-3 border border-gray-500 rounded-md focus:ring-2 focus:ring-yellow-600 outline-none focus:border-transparent transition"
                         placeholder={t("contact-form.placeholder.email")}
                         required
                       />
@@ -248,7 +248,7 @@ export default function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
+                      className="w-full p-3 border border-gray-500 rounded-md focus:ring-2 focus:ring-yellow-600 outline-none focus:border-transparent transition"
                       placeholder={t("contact-form.placeholder.message")}
                       required
                     />
