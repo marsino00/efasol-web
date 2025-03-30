@@ -7,7 +7,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { ContentfulImage, EnergiesSectionEntry } from "@/app/types/data";
 import React from "react";
 
-// Función para procesar markdown básico (negrita con __text__)
 function parseMarkdown(text: string): React.ReactNode[] {
   const processedText = text.replace(/\\n/g, "\n");
   const parts = processedText.split(/(__.*?__)/g);
