@@ -116,12 +116,12 @@ export default function ContactSection() {
             className="col-span-1"
           >
             <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-              <div className="bg-[#FAB03B] p-6 text-white">
+              <div className="bg-[#FAB03B] p-6 text-gray-900">
                 <h3 className="text-xl font-bold mb-2">{title}</h3>
                 <p className="text-[#FAB03B]-100">{desc}</p>
               </div>
-              <div className="p-6 space-y-6">
-                <div className="flex items-start gap-4">
+              <ul className="p-6 space-y-6">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <PhoneCall className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -131,9 +131,9 @@ export default function ContactSection() {
                     </h4>
                     <p className="text-gray-600">{phone}</p>
                   </div>
-                </div>
+                </li>
 
-                <div className="flex items-start gap-4">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <Mail className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -144,9 +144,9 @@ export default function ContactSection() {
 
                     <p className="text-gray-600">{email}</p>
                   </div>
-                </div>
+                </li>
 
-                <div className="flex items-start gap-4">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <MapPin className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -164,9 +164,9 @@ export default function ContactSection() {
                         </p>
                       ))}
                   </div>
-                </div>
+                </li>
 
-                <div className="flex items-start gap-4">
+                <li className="flex items-start gap-4">
                   <div className="bg-yellow-100 p-3 rounded-full">
                     <Clock className="h-5 w-5 text-yellow-600" />
                   </div>
@@ -176,8 +176,8 @@ export default function ContactSection() {
                     </h4>
                     <p className="text-gray-600">{schedule}</p>
                   </div>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </motion.div>
 
@@ -209,7 +209,7 @@ export default function ContactSection() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
+                        className="w-full p-3 border border-gray-500 rounded-md focus:ring-2 focus:ring-yellow-600 outline-none focus:border-transparent transition"
                         placeholder={t("contact-form.placeholder.name")}
                         required
                       />
@@ -228,7 +228,7 @@ export default function ContactSection() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
+                        className="w-full p-3 border border-gray-500 rounded-md focus:ring-2 focus:ring-yellow-600 outline-none focus:border-transparent transition"
                         placeholder={t("contact-form.placeholder.email")}
                         required
                       />
@@ -248,7 +248,7 @@ export default function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition"
+                      className="w-full p-3 border border-gray-500 rounded-md focus:ring-2 focus:ring-yellow-600 outline-none focus:border-transparent transition"
                       placeholder={t("contact-form.placeholder.message")}
                       required
                     />
@@ -256,7 +256,7 @@ export default function ContactSection() {
                   <div>
                     <button
                       type="submit"
-                      className="w-full md:w-auto px-8 py-3 text-base bg-[#FAB03B] text-white rounded-md"
+                      className="w-full md:w-auto px-8 py-3 text-base bg-[#FAB03B] text-gray-900 rounded-md"
                     >
                       {t("contact-form.send")}
                     </button>

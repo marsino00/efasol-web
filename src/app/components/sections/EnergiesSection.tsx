@@ -7,7 +7,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { ContentfulImage, EnergiesSectionEntry } from "@/app/types/data";
 import React from "react";
 
-// Función para procesar markdown básico (negrita con __text__)
 function parseMarkdown(text: string): React.ReactNode[] {
   const processedText = text.replace(/\\n/g, "\n");
   const parts = processedText.split(/(__.*?__)/g);
@@ -66,41 +65,61 @@ export default function EnergiesSection() {
         </h2>
         <div className="w-24 h-1 bg-[#FAB03B] mx-auto mb-10"></div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 list-none p-0">
           {data.map((item, index) => {
-            const backgroundUrl = `https:${item?.fields?.energiesImage?.fields?.file?.url}`;
+            const backgroundUrl = item?.fields?.energiesImage?.fields?.file?.url
+              ? `https:${item.fields.energiesImage.fields.file.url}`
+              : "/placeholder-image.jpg";
+
             return (
-              <motion.div
+              <motion.li
                 key={item.sys.id}
-                className="group"
+                className="group flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
                 viewport={{ once: true }}
               >
                 <div className="relative overflow-hidden rounded-lg mb-6 aspect-[4/3]">
+                  {/* Background Image Div */}
                   <div
-                    className="absolute inset-0 transition-transform duration-500 group-hover:scale-110"
+                    className="absolute inset-0 transition-transform duration-500 ease-in-out group-hover:scale-110"
                     style={{
                       backgroundImage: `url(${backgroundUrl})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
+                    aria-hidden="true"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 p-6">
+
+                  {/* Optional: Keep a lighter overall gradient if desired */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" /* You can keep this lighter or remove it */
+                    aria-hidden="true"
+                  />
+
+                  {/* --- NEW: Dedicated Text Background Strip --- */}
+                  <div className="absolute bottom-0 left-0 w-full pt-10 pb-6 px-6 bg-gradient-to-t from-black/80 via-black/70 to-transparent">
+                    {/* Adjust padding (pt, pb, px) and gradient strength (from/via) as needed */}
                     <h3 className="text-xl font-bold text-white">
-                      {item.fields.tituloElemento}
+                      {item.fields.tituloElemento ?? "Título no disponible"}
                     </h3>
                   </div>
+                  {/* --- End Text Background Strip --- */}
                 </div>
-                <p className="text-gray-600 text-left">
-                  {parseMarkdown(item.fields.descElemento ?? "Cargando...")}
-                </p>
-              </motion.div>
+
+                {/* Description Paragraph */}
+                <div className="flex-grow">
+                  <p className="text-gray-600 text-left">
+                    {parseMarkdown(
+                      item.fields.descElemento ?? "Descripción no disponible..."
+                    )}
+                  </p>
+                </div>
+              </motion.li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

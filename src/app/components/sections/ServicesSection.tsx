@@ -41,11 +41,11 @@ export default function ServicesSection() {
         </h2>
         <div className="w-24 h-1 bg-[#FAB03B] mx-auto mb-10"></div>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <ul className="grid md:grid-cols-3 gap-12">
           {data.map((item, index) => {
             const backgroundUrl = `https:${item?.fields?.servicesImage?.fields?.file?.url}`;
             return (
-              <motion.div
+              <motion.li
                 key={item.sys.id}
                 className="flex flex-col items-center text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -67,10 +67,10 @@ export default function ServicesSection() {
                   {item.fields.tituloElemento}
                 </h3>
                 <p className="text-gray-600">{item.fields.descElemento}</p>
-              </motion.div>
+              </motion.li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

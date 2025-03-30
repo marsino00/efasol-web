@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 
 export default function AvisoLegalPage() {
-  // Ajusta el namespace ("aviso-legal") a lo que tengas en tu archivo de traducciones.
   const t = useTranslations("aviso-legal");
 
   return (
