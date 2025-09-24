@@ -28,7 +28,8 @@
     "legal-advice": "Aviso legal",
     "privacy-policy": "Política de privacidad",
     "cookies-policy": "Política de cookies",
-    "accesibilidad": "Declaración de Accesibilidad"
+    "accesibilidad": "Declaración de Accesibilidad",
+    "integration": "Integraciones"
   },
   "why-chosse-us": "¿Por qué escoger EFASOL?",
   "aviso-legal": {
@@ -265,5 +266,10 @@
     "videoNotSupported": "Tu navegador no soporta la etiqueta de vídeo.",
     "loadingTitle": "Cargando Título...",
     "loadingDesc": "Cargando descripción..."
+  },
+  "integrations": {
+    "activeIntegrations": "Integraciones activas",
+    "description": "Esta página lista las librerías que proporcionan funcionalidades activas en la web, lo que sería las equivalencias a los plugins.",
+    "multilanguage": "El multidioma funciona a partir de la librería next-intl junto con la propia de Contentful, utilizada a partir del Componente Toogle para escoger entre los dos idiomas y mostrar el contenido localizado desde el gestor de contenidos Contentful."
   }
 }

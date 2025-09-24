@@ -87,6 +87,11 @@ export default function Footer() {
               {t("accesibilidad")}
             </Link>
           </li>
+          <li>
+            <Link href="/integraciones" className="hover:text-gray-900">
+              {t("integration")}
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

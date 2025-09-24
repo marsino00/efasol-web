@@ -28,7 +28,8 @@
     "legal-advice": "Avís legal",
     "privacy-policy": "Política de privacitat",
     "cookies-policy": "Política de cookies",
-    "accesibilidad": "Declaració d'accessibilitat"
+    "accesibilidad": "Declaració d'accessibilitat",
+    "integration": "Integracions"
   },
   "why-chosse-us": "Per què escollir EFASOL?",
   "aviso-legal": {
@@ -259,9 +260,16 @@
     },
     "skipLink": "Saltar al contingut principal"
   },
-  "hero": {"pauseVideo": "Pausa el vídeo de fons",
+  "hero": {
+    "pauseVideo": "Pausa el vídeo de fons",
     "playVideo": "Reprodueix el vídeo de fons",
     "videoNotSupported": "El teu navegador no suporta l'etiqueta de vídeo.",
     "loadingTitle": "Carregant Títol...",
-    "loadingDesc": "Carregant descripció..."}
+    "loadingDesc": "Carregant descripció..."
+  },
+  "integrations": {
+    "activeIntegrations": "Integracions actives",
+    "description": "Aquesta pàgina llista les llibreries que proporcionen funcionalitats actives a la web, el que serien les equivalències als plugins.",
+    "multilanguage": "El multidioma funciona a partir de la llibreria next-intl juntament amb la pròpia de Contentful, usada a partir del Component Toogle per a escollir entre els dos idiomes i mostrar el contingut localitzat des del gestor de continguts Contentful."
+  }
 }
